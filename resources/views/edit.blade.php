@@ -9,13 +9,13 @@
 @csrf
 @method('put')
     <label for="title">タイトル</label>
-    <input type="text" id="title" name="title" >
+    <input type="text" id="title" name="title" value="{{ $post->title }}" >
 
     <label for="content">本文</label>
-    <textarea  id="content" name="content" ></textarea>
+    <textarea  id="content" name="content" >{{ $post->content }}</textarea>
 
     <label for="prefectures">都道府県</label>
-    <input type="text" id="prefectures" name="prefectures" >
+    <input type="text" id="prefectures" name="prefectures" value="{{ $post->prefectures }}" >
 
     <button type="submit">送信</button>
 

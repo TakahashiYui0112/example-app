@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Prefecture;
 
 
 class PostController extends Controller
@@ -17,16 +18,16 @@ class PostController extends Controller
 
     public function create()
     {
+        $prefectures = Prefecture::all();
 
-
-        return view('create');
+        return view('create', compact('prefectures'));
     }
     public function store(Request $request)
     {
         $post = new Post;
         $post->title =  $request->title;
         $post->content =  $request->content;
-        $post->prefectures =  $request->prefectures;
+        $post->prefecture_id =  $request->prefecture_id;
 
 
         $post->save();
@@ -55,5 +56,13 @@ class PostController extends Controller
 
         $post->save();
         return redirect('/posts/' . $post->id);
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+
+        $post->delete();
+        return redirect('posts');
     }
 }
